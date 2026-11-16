@@ -1,0 +1,9 @@
+base: ../query/rtdetr-x.yaml
+name: final-rtdetr-x-ds
+eval_variant: evalb
+views: ["1280"]
+augmentations:
+- Downscale:
+    scale_range: [0.35, 1.0]
+    interpolation_pair: {downscale: 3, upscale: 1}
+    p: 0.5

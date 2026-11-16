@@ -1,0 +1,4 @@
+base: rtdetr-l.yaml
+name: rtdetr-l-24ep
+epochs: 24
+close_mosaic: 6

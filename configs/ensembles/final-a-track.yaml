@@ -1,0 +1,12 @@
+# Final candidate A with BoT-SORT tracking (lab A/B vs final-a old temporal): ens-f members + second RT-DETR-x seed, tracking rescoring.
+name: final-a-track
+members:
+  - {run: final-rtdetr-l-ds, views: ["1280"], val_split: val}
+  - {run: final-rtdetr-l-ds-seed1, views: ["1280"], val_split: val}
+  - {run: final-rtdetr-x-ds, views: ["1280"], val_split: val}
+  - {run: final-rtdetr-x-ds-seed1, views: ["1280"], val_split: val}
+  - {run: final-rtdetr-x, views: ["1280"], val_split: evalb}
+  - {run: final-yolo11m-degrade, views: ["1280"], val_split: val}
+  - {run: final-yolo11m, views: ["1280"], val_split: evalb}
+folds: [0, 1, 2, 3, 4]
+tracking: {alpha: 0.25}

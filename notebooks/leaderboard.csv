@@ -1,0 +1,15 @@
+submission,model,validation_fold0_eval,public_lb,ensemble
+yolo11s fold0,yolo11s,0.2322,0.1771,
+rtdetr-l fold0,rtdetr-l,0.3047,0.33202,
+rtdetr-x fold0 + 4-view TTA + greedy temporal,final-rtdetr-x,0.3299,0.28036,
+rtdetr-x fold0 plain,final-rtdetr-x,0.3082,0.29925,
+rtdetr-x fold0 + greedy temporal,final-rtdetr-x,0.323,0.31881,
+"final-a (7 members, WBF, greedy temporal)",final-a,,0.36482,final-a
+"D-FINE-X fold0 e9, plain",dfine-x,,0.32162,
+final-a members + BoT-SORT,final-a-track,,0.36598,final-a-track
++ D-FINE-X 5 folds (weight 2),final-a-dfine-track,,0.37485,final-a-dfine-track
+"+ per-model NMS, per-panel split screens",final-a-dfine-full,,0.38204,final-a-dfine-full
+D-FINE 20 epochs instead of 12,final-a-dfine20-full,,0.38218,final-a-dfine20-full
+D-FINE alone (no other members),dfine-aug5-full,,0.37701,dfine-aug5-full
++ SAHI inference for D-FINE,final-a-dfine20sahi-full,,0.38255,final-a-dfine20sahi-full
++ Kornia DIP D-FINE instead of plain (no SAHI),final-a-dfine20dip-full,,0.38135,final-a-dfine20dip-full

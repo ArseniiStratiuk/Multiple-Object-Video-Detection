@@ -1,0 +1,6 @@
+base: ../base.yaml
+name: yolo11s
+framework: ultralytics
+model: yolo11s.pt
+batch: 32          # Ultralytics batch is the total over all DDP GPUs
+close_mosaic: 3    # default 10 assumes 100+ epochs; keep mosaic for 3/4 of the budget

@@ -1,0 +1,4 @@
+base: ../query/rtdetr-l-downscale.yaml
+name: final-rtdetr-l-ds
+eval_variant: evalb
+views: ["1280"]

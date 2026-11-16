@@ -1,0 +1,8 @@
+base: yolo11s.yaml
+name: yolo11s-downscale
+# half of the training images lose detail like a 680-960 px test frame
+augmentations:
+- Downscale:
+    scale_range: [0.35, 1.0]
+    interpolation_pair: {downscale: 3, upscale: 1}
+    p: 0.5

@@ -1,0 +1,4 @@
+base: rtdetr-l.yaml
+name: rtdetr-l-q500
+model: ../models/rtdetr-l-q500.yaml
+pretrained: rtdetr-l.pt

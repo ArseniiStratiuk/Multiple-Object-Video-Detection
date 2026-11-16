@@ -1,0 +1,3 @@
+base: ../anchor_free/yolo11m-degrade.yaml
+name: final-yolo11m-degrade
+views: ["1280"]

@@ -1,0 +1,3 @@
+base: yolo11m-downscale.yaml
+name: yolo11m-downscale-repeat
+seed: 1

@@ -1,0 +1,54 @@
+# D-FINE-X, 20 epochs (curve still rising at 11), (Objects365 -> COCO weights) + downscale and motion-blur augmentation, fold 0, shared protocol:
+# every 5th training frame, scored held-out frames (evalb cache), 12 epochs, 1280 input.
+# Resize stretches to a square, as D-FINE does by default.
+__include__: ['dfine_hgnetv2_x_obj2custom.yml']
+
+output_dir: /e/scratch/e-dev-2026d09-075/visdrone-hw2/runs/dfine-x-aug20/fold0
+num_classes: 8
+remap_mscoco_category: False
+eval_spatial_size: [1280, 1280]
+epochs: 20
+checkpoint_freq: 1
+
+# The obj2custom recipe sets EMA warmups 0, i.e. a constant decay of 0.9999 from step 0; over our
+# ~3.4k steps the EMA (used for evaluation) would stay mostly the initial weights. Restore D-FINE's
+# default exponential ramp.
+ema:
+  warmups: 1000
+
+train_dataloader:
+  total_batch_size: 16
+  num_workers: 8
+  dataset:
+    img_folder: /
+    ann_file: /e/scratch/e-dev-2026d09-075/visdrone-hw2/cache/folds/coco-fold0-step5-evalb/train.json
+    transforms:
+      ops:
+        - {type: RandomPhotometricDistort, p: 0.5}
+        - {type: RandomZoomOut, fill: 0}
+        - {type: RandomIoUCrop, p: 0.8}
+        - {type: SanitizeBoundingBoxes, min_size: 1}
+        - {type: RandomHorizontalFlip}
+        - {type: Resize, size: [1280, 1280], }
+        - {type: SanitizeBoundingBoxes, min_size: 1}
+        # Test clips include 680- and 960-px sources and motion blur: simulate both (Albumentations).
+        - {type: Albu, transforms: [{Downscale: {scale_range: [0.35, 1.0], interpolation_pair: {downscale: 3, upscale: 1}, p: 0.5}},
+                                    {MotionBlur: {blur_limit: [3, 15], p: 0.3}}]}
+        - {type: ConvertPILImage, dtype: 'float32', scale: True}
+        - {type: ConvertBoxes, fmt: 'cxcywh', normalize: True}
+      policy:
+        epoch: 20  # never: D-FINE's stage-2 switch (reload best_stg1, stop strong aug) hung DDP
+  collate_fn:
+    base_size: 1280
+    stop_epoch: 20
+
+val_dataloader:
+  total_batch_size: 16
+  num_workers: 8
+  dataset:
+    img_folder: /
+    ann_file: /e/scratch/e-dev-2026d09-075/visdrone-hw2/cache/folds/coco-fold0-step5-evalb/val.json
+    transforms:
+      ops:
+        - {type: Resize, size: [1280, 1280], }
+        - {type: ConvertPILImage, dtype: 'float32', scale: True}

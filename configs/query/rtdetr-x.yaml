@@ -1,0 +1,3 @@
+base: rtdetr-l.yaml
+name: rtdetr-x
+model: rtdetr-x.pt

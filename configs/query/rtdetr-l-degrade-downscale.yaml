@@ -1,0 +1,18 @@
+base: rtdetr-l-degrade.yaml
+name: rtdetr-l-degrade-downscale
+# lists replace the base list, so the degrade entry is repeated here
+augmentations:
+- Downscale:
+    scale_range: [0.35, 1.0]
+    interpolation_pair: {downscale: 3, upscale: 1}
+    p: 0.5
+- Sequential:
+    transforms:
+    - GaussianBlur:
+        sigma_limit: [0.3, 1.0]
+        blur_limit: 0
+        p: 1.0
+    - ImageCompression:
+        quality_range: [40, 90]
+        p: 1.0
+    p: 0.5

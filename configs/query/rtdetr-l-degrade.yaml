@@ -1,0 +1,15 @@
+base: rtdetr-l.yaml
+name: rtdetr-l-degrade
+eval_variant: evalb
+# test frames are 2.4-3.6x blurrier than labelled frames: blur + JPEG on half the images
+augmentations:
+- Sequential:
+    transforms:
+    - GaussianBlur:
+        sigma_limit: [0.3, 1.0]
+        blur_limit: 0
+        p: 1.0
+    - ImageCompression:
+        quality_range: [40, 90]
+        p: 1.0
+    p: 0.5

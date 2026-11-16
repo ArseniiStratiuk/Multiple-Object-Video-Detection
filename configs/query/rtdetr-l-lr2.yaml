@@ -1,0 +1,9 @@
+base: rtdetr-l.yaml
+name: rtdetr-l-lr2
+# rtdetr-l-lr diverged: an explicit AdamW keeps warmup_bias_lr 0.1 (the automatic choice
+# sets it to 0 for Adam-type optimizers). Same idea with a bias warmup of 0 and beta1 0.9.
+optimizer: AdamW
+lr0: 0.0002
+momentum: 0.9
+warmup_bias_lr: 0.0
+warmup_epochs: 2

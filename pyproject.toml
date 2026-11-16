@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visdet"
+version = "0.1.0"
+description = "Small-object detection experiments on VisDrone2019-VID clips"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy==2.5.4",
+    "pandas==3.1.1",
+    "pyarrow==26.0.1",
+    "pyyaml==6.0.3",
+    "scikit-learn==1.9.1",
+    "ensemble-boxes==1.0.10",
+    "faster-coco-eval==1.8.0",
+]
+
+[project.optional-dependencies]
+train = [
+    "torch==2.9.1",
+    "torchvision==0.24.1",
+    "ultralytics==8.4.207",
+    "wandb==0.31.0",
+    "opencv-python-headless==5.0.0.93",
+    "albumentations==2.0.8",
+    "lap==0.5.14",
+    "scenedetect==0.7.3",
+    "kornia==0.9.0",
+    "sahi==0.14.0",
+]
+analysis = [
+    "tidecv==1.0.1",
+    "pycocotools==2.0.11",
+]
+notebooks = ["ipykernel==7.4.0", "matplotlib==3.11.2", "nbclient==0.11.0", "nbformat==5.11.1"]
+
+[project.scripts]
+visdet = "visdet.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*.ipynb" = ["E402"]  # the setup cell sets VISDET_DATA before importing visdet
+
+[tool.setuptools.package-data]
+visdet = ["data/*.csv"]

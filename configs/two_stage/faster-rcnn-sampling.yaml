@@ -1,0 +1,5 @@
+base: faster-rcnn.yaml
+name: faster-rcnn-sampling
+# defaults: 512 RoIs per image, 25% positives
+box_batch_size_per_image: 1024
+box_positive_fraction: 0.5

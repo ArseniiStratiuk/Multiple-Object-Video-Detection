@@ -1,0 +1,3 @@
+base: yolo11m.yaml
+name: yolo11m-repeat
+seed: 1

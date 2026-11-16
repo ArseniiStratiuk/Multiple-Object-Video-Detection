@@ -1,0 +1,5 @@
+base: faster-rcnn.yaml
+name: faster-rcnn-anchors
+# default RPN anchors 32-512 (one size per FPN level); proposals reach only 4% of objects
+# under 16 px and 47% of 16-32 px objects, so every level gets half the default size
+anchor_sizes: [16, 32, 64, 128, 256]

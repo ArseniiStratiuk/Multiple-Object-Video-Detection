@@ -1,0 +1,4 @@
+base: retinanet.yaml
+name: retinanet-anchors
+# default base sizes 32-512; 95% of objects are under 83 px at 1280; ratios 0.5/1/2 match k-means
+anchor_sizes: [16, 32, 64, 128, 256]

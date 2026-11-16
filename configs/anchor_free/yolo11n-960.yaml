@@ -1,0 +1,4 @@
+base: yolo11s.yaml
+name: yolo11n-960
+model: yolo11n.pt
+imgsz: 960

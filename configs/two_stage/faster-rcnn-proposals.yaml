@@ -1,0 +1,7 @@
+base: faster-rcnn.yaml
+name: faster-rcnn-proposals
+# defaults: 2000/2000 train, 1000/1000 test; frames hold up to 180 objects
+rpn_pre_nms_top_n_train: 4000
+rpn_post_nms_top_n_train: 4000
+rpn_pre_nms_top_n_test: 3000
+rpn_post_nms_top_n_test: 3000

@@ -1,0 +1,14 @@
+base: yolo11m.yaml
+name: yolo11m-degrade
+eval_variant: evalb
+augmentations:
+- Sequential:
+    transforms:
+    - GaussianBlur:
+        sigma_limit: [0.3, 1.0]
+        blur_limit: 0
+        p: 1.0
+    - ImageCompression:
+        quality_range: [40, 90]
+        p: 1.0
+    p: 0.5

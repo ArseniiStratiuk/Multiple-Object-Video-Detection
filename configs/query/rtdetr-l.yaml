@@ -1,0 +1,6 @@
+base: ../base.yaml
+name: rtdetr-l
+framework: ultralytics
+model: rtdetr-l.pt
+batch: 16
+close_mosaic: 3

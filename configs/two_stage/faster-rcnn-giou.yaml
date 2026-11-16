@@ -1,0 +1,3 @@
+base: faster-rcnn.yaml
+name: faster-rcnn-giou
+box_loss: giou

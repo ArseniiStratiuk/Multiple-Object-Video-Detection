@@ -1,0 +1,3 @@
+base: final-rtdetr-x-ds.yaml
+name: final-rtdetr-x-ds-seed1
+seed: 1

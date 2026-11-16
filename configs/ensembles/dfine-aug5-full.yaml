@@ -1,0 +1,9 @@
+# D-FINE-X aug, 5 folds, epoch 11, alone. Test: per-panel detection on split screens, per-model NMS
+# then WBF of the fold models, BoT-SORT per segment and panel. A/B vs final-a-dfine-full: do the
+# RT-DETR/YOLO members still add anything?
+name: dfine-aug5-full
+members:
+  - {run: dfine-x-aug-e11-panel, views: ["1280"], val_split: val}
+folds: [0, 1, 2, 3, 4]
+fusion: {nms_per_set: true}
+tracking: {alpha: 0.25, panels: true}

@@ -1,0 +1,10 @@
+# Shared protocol for every detector: same fold, frames, input size, budget and evaluation.
+fold: 0
+step: 5            # every 5th frame of each training clip (same-object IoU 0.59 at this step)
+imgsz: 1280        # long side; median object side 31 px after resizing
+epochs: 12
+batch: 8
+seed: 0
+workers: 8
+max_det: 500       # competition scores up to 500 detections per image
+predict_conf: 0.001

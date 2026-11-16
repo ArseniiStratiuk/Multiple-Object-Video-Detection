@@ -1,0 +1,5 @@
+# D-FINE-X with downscale + motion-blur augmentation, epoch 11 EMA, 5 folds; test = WBF of fold models.
+name: dfine-aug5
+members:
+  - {run: dfine-x-aug-e11, views: ["1280"], val_split: val}
+folds: [0, 1, 2, 3, 4]

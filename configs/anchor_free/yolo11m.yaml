@@ -1,0 +1,3 @@
+base: yolo11s.yaml
+name: yolo11m
+model: yolo11m.pt

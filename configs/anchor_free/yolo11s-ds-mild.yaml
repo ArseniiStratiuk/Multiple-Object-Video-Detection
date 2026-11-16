@@ -1,0 +1,7 @@
+base: yolo11s.yaml
+name: yolo11s-ds-mild
+augmentations:
+- Downscale:
+    scale_range: [0.6, 1.0]
+    interpolation_pair: {downscale: 3, upscale: 1}
+    p: 0.5

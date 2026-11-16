@@ -1,0 +1,33 @@
+# One change vs final-a-dfine20-full: the D-FINE member has the learned Kornia enhancement (dfine-x-dip).
+# final-a members + D-FINE-X aug 20 epochs, epoch 19 (weight 2). Test: every split-screen panel predicted on its own
+# crop; per-model NMS then WBF; BoT-SORT per PySceneDetect segment and panel, track rescoring.
+name: final-a-dfine20dip-full
+members:
+- run: final-rtdetr-l-ds-panel
+  views: ['1280']
+  val_split: val
+- run: final-rtdetr-l-ds-seed1-panel
+  views: ['1280']
+  val_split: val
+- run: final-rtdetr-x-ds-panel
+  views: ['1280']
+  val_split: val
+- run: final-rtdetr-x-ds-seed1-panel
+  views: ['1280']
+  val_split: val
+- run: final-rtdetr-x-panel
+  views: ['1280']
+  val_split: evalb
+- run: final-yolo11m-degrade-panel
+  views: ['1280']
+  val_split: val
+- run: final-yolo11m-panel
+  views: ['1280']
+  val_split: evalb
+- run: dfine-x-dip-e19-panel
+  views: ['1280']
+  val_split: val
+  weight: 2
+folds: [0, 1, 2, 3, 4]
+fusion: {nms_per_set: true}
+tracking: {alpha: 0.25, panels: true}

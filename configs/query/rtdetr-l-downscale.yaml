@@ -1,0 +1,7 @@
+base: rtdetr-l.yaml
+name: rtdetr-l-downscale
+augmentations:
+- Downscale:
+    scale_range: [0.35, 1.0]
+    interpolation_pair: {downscale: 3, upscale: 1}
+    p: 0.5

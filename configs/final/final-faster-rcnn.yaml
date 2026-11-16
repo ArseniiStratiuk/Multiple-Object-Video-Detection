@@ -1,0 +1,3 @@
+base: ../two_stage/faster-rcnn-proposals.yaml
+name: final-faster-rcnn
+views: ["1280"]  # multi-scale TTA hurt on the leaderboard (notebook 06)

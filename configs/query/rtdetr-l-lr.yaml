@@ -1,0 +1,6 @@
+base: rtdetr-l.yaml
+name: rtdetr-l-lr
+# explicit AdamW at 1e-4 with a longer warmup instead of the automatic choice
+optimizer: AdamW
+lr0: 0.0001
+warmup_epochs: 2

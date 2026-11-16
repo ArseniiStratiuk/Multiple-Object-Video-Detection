@@ -1,0 +1,4 @@
+base: retinanet.yaml
+name: retinanet-focal
+focal_alpha: 0.25
+focal_gamma: 1.5
