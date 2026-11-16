@@ -39,7 +39,9 @@ SAHI: I thought the other way first after I tried SAHI inference. I thought it d
 
 Kornia is a library that gets used for image processings, and it's optimized on GPU well, and I used it for augmentations first, but it worked bad and I switched to albumentations. And I train it together with the detector using detection loss. The last layer starts at zero, so training starts from the unchanged image. The small network that predicts the settings is my own, in the style of IA-YOLO: 5 convolution layers and one linear layer look at a 256 by 256 copy of the image and predict 7 settings (white balance for 3 colours, gamma, contrast, sharpness, unsharp mask). Its scores are within noise and it didn't really help, but with some improvement on dark frames (out-of-fold .3199 vs .3206, public .3813 vs .3822, five darkest labelled clips .463 vs .451).
 
-![Learned Kornia enhancement on the two darkest test clips: original (left), enhanced (right).](images/kornia_before_after.jpg)
+![](images/kornia_before_after.jpg)
+
+*Learned Kornia enhancement on the two darkest test clips: original (left), enhanced (right).*
 
 ## Experiments and final submissions
 
@@ -63,7 +65,9 @@ Local mAP: fold 0 for single models, out-of-fold over all 5 folds for ensembles.
 
 I analyzed with TIDE common errors of my detectors. The biggest error type was wrong class, mostly car vs van, which is mostly labeling ambiguity by annotators; the most confident background errors were mostly unlabelled cars.
 
-![Top-score TIDE errors of RT-DETR-l. Top: detections counted as background, all unlabelled objects. Bottom: car vs van class errors. Green = label, red = prediction.](images/tide_top_errors.jpg)
+![](images/tide_top_errors.jpg)
+
+*Top-score TIDE errors of RT-DETR-l. Top: detections counted as background, all unlabelled objects. Bottom: car vs van class errors. Green = label, red = prediction.*
 
 I did Weights & Biases as well: [W&B project](https://forge.coreweave.com/wandb/stratiuk-pn-ucu/visdrone-hw2). YOLO, RT-DETR and D-FINE have non-proper curves, so I recorded but not sure whether it counts for the bonus.
 
